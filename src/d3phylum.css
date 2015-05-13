@@ -26,11 +26,18 @@
   display: inline-block;
 }
 
+.d3p-legend {
+  display: inline-block;
+  margin-right: 14px;
+  min-width: 64px;
+}
+
 .d3p-legend-color-code {
   width: 13px;
   height: 13px;
   display: inline-block;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .d3p-legend-text {
