@@ -9,7 +9,7 @@ d3phylum.components.axis = function() {
     switch (_c.orient) {
       case 'top':
         selection.append('text')
-          .attr('class', 'label')
+          .attr('class', 'd3p-label')
           .attr('x', scale_range)
           .attr('y', 13)
           .attr('text-anchor', 'end')
@@ -17,7 +17,7 @@ d3phylum.components.axis = function() {
         break;
       case 'right':
         selection.append('text')
-          .attr('class', 'label')
+          .attr('class', 'd3p-label')
           .attr('y', -7)
           .attr('transform', 'rotate(-90)')
           .attr('text-anchor', 'end')
@@ -25,7 +25,7 @@ d3phylum.components.axis = function() {
         break;
       case 'bottom':
         selection.append('text')
-          .attr('class', 'label')
+          .attr('class', 'd3p-label')
           .attr('x', scale_range)
           .attr('y', -7)
           .attr('text-anchor', 'end')
@@ -33,7 +33,7 @@ d3phylum.components.axis = function() {
         break;
       case 'left':
         selection.append('text')
-          .attr('class', 'label')
+          .attr('class', 'd3p-label')
           .attr('y', 14)
           .attr('transform', 'rotate(-90)')
           .attr('text-anchor', 'end')
@@ -70,13 +70,13 @@ d3phylum.components.legendGuide = function() {
   };
 
   var visualFunc = function(selection) {
-    var legend = selection.selectAll('div.legend')
+    var legend = selection.selectAll('div.d3p-legend')
         .data(_c.keys)
       .enter().append('div')
-        .attr('class', 'legend')
+        .attr('class', 'd3p-legend')
 
     legend.append('div')
-      .attr('class', 'legend-color-code')
+      .attr('class', 'd3p-legend-color-code')
       .style('background-color', function(key) {
         var rgb = d3phylum.utils.hexToRgb(_c.color_scale(key));
         return 'rgba(' + [
@@ -88,12 +88,12 @@ d3phylum.components.legendGuide = function() {
         return '1px solid ' + _c.color_scale(key);
       })
       .on('click', function(d) {
-        var target_selection = d3.select(this.closest('.legend'));
+        var target_selection = d3.select(this.closest('.d3p-legend'));
         _c.on_click_callback(d, target_selection);
       });
 
     legend.append('span')
-      .attr('class', 'legend-text')
+      .attr('class', 'd3p-legend-text')
       .text(function(key) { return key; });
   };
 

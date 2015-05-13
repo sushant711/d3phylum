@@ -33,11 +33,11 @@ d3phylum.visuals.scatterBubblePlot = function() {
   var _baseRender = function() {
     _visuals.parent_selection.selectAll('*').remove();
     _visuals.svg_plot = _visuals.parent_selection.append('svg')
-      .attr('class', 'plot')
+      .attr('class', 'd3p-plot')
       .attr('width', _c.width + _c.margin.left + _c.margin.right)
       .attr('height', _c.height + _c.margin.top + _c.margin.bottom);
     _visuals.tooltip = d3.select('body').append('div')
-      .attr('class', 'tooltip')
+      .attr('class', 'd3p-tooltip')
       .style('opacity', 0);
     _visuals.control_widgets = _visuals.parent_selection.append('div')
       .attr('class', 'control-widgets')
@@ -107,7 +107,7 @@ d3phylum.visuals.scatterBubblePlot = function() {
       .orient('bottom')
       .label(_c.axis_labels.x);
 
-    _visuals.svg_plot.append('g').attr('class', 'x axis')
+    _visuals.svg_plot.append('g').attr('class', 'd3p-x d3p-axis')
       .attr(
         'transform',
         d3phylum.utils.svgTranslate(
@@ -123,7 +123,7 @@ d3phylum.visuals.scatterBubblePlot = function() {
       .orient('left')
       .label(_c.axis_labels.y);
 
-    _visuals.svg_plot.append('g').attr('class', 'y axis')
+    _visuals.svg_plot.append('g').attr('class', 'd3p-y d3p-axis')
         .attr(
           'transform',
           d3phylum.utils.svgTranslate(
@@ -137,14 +137,14 @@ d3phylum.visuals.scatterBubblePlot = function() {
     var bubbles_field = _visuals.svg_plot.append('g')
       .attr('transform', d3phylum.utils.svgTranslate(
             _c.margin.left, _c.margin.top))
-      .attr('class', 'plot-field');
+      .attr('class', 'd3p-plot-field');
 
-    bubbles_field.selectAll('.dots')
+    bubbles_field.selectAll('.d3p-dots')
         .data(_c.bubbles)
         .enter()
       .append('circle')
         .attr({
-          class: 'dot',
+          class: 'd3p-dot',
           cx: function(b) { return _c.x_scale(b.x); },
           cy: function(b) { return _c.y_scale(b.y); }
         })
@@ -202,7 +202,7 @@ d3phylum.visuals.scatterBubblePlot = function() {
       });
 
     var legend_widget = _visuals.control_widgets.append('div')
-      .attr('class', 'legend-guide')
+      .attr('class', 'd3p-legend-guide')
       .call(legend_guide);
   };
 
