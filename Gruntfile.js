@@ -17,13 +17,23 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        }
+        },
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: '<%= dirs.dev %>',
+                src: ['d3phylum.css'],
+                dest: '<%= dirs.prod %>',
+                ext: '.min.css'
+            }
+        },
     });
 
     // Load plugins here
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // Define your tasks here
-    grunt.registerTask('default', ['uglify']);
-    grunt.registerTask('deploy', ['uglify']);
+    grunt.registerTask('default', ['uglify', 'cssmin']);
+    grunt.registerTask('deploy', ['uglify', 'cssmin']);
 };
