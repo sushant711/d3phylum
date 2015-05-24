@@ -13,7 +13,8 @@ module.exports = function(grunt) {
                         '<%= dirs.dev %>/utils.js',
                         '<%= dirs.dev %>/baseChart.js',
                         '<%= dirs.dev %>/components.js',
-                        '<%= dirs.dev %>/scatterBubblePlot.js'
+                        '<%= dirs.dev %>/scatterBubblePlot.js',
+                        '<%= dirs.dev %>/distributionGrid.js'
                     ]
                 }
             }
