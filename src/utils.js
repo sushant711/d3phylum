@@ -23,5 +23,34 @@ d3phylum.utils = {
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
+  },
+
+  rgbToHex: function(r, g, b) {
+    var toHex = function (c) {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+    }
+
+    return '#' + toHex(r) + toHex(g) + toHex(b);
+  },
+
+  strSubstitute: function(str, context) {
+    Object.keys(context).map(
+      function (key) {
+        str = str.replace(key, context[key]);
+        return key;
+      }
+    );
+    return str;
+  },
+
+  rgbaStr: function(r, g, b, a) {
+    return this.strSubstitute(
+      'rgba({{r}}, {{g}}, {{b}}, {{a}})',
+      {
+        '{{r}}': r, '{{g}}': g,
+        '{{b}}': b, '{{a}}': a
+      }
+    );
   }
 };

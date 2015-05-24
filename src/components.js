@@ -1,8 +1,20 @@
 d3phylum.components.axis = function() {
-  var _c = {};
+  var _c = {
+    ticks: 10
+  };
 
   var visualFunc = function(selection) {
-    var axis = d3.svg.axis().orient(_c.orient).scale(_c.scale);
+    var ticks_10 = _c.scale.ticks(10);
+
+    var axis = d3.svg.axis()
+      .orient(_c.orient)
+      .scale(_c.scale)
+      .ticks(_c.ticks)
+      .tickFormat(
+        function(d) {
+          return ticks_10.indexOf(d) !== -1 ? d: '';
+        }
+      );
     selection.call(axis);
     var scale_extent = _c.scale.range();
     var scale_range = Math.abs(scale_extent[0] - scale_extent[1]);
@@ -58,7 +70,13 @@ d3phylum.components.axis = function() {
     if (!arguments.length) return _c.label;
     _c.label = value;
     return visualFunc;
-  }
+  };
+
+  visualFunc.ticks = function(value) {
+    if (!arguments.length) return _c.scale.ticks(_c.ticks);
+    _c.ticks = value;
+    return visualFunc;
+  };
 
   return visualFunc;
 };
@@ -120,6 +138,43 @@ d3phylum.components.legendGuide = function() {
     _c.on_click_callback = callback;
     return visualFunc;
   };
+
+  return visualFunc;
+};
+
+d3phylum.components.tooltip = function() {
+  var _config = {};
+  var _visuals = {};
+
+  var tooltip = d3.select('div.d3p-tooltip');
+  tooltip.remove();
+  var tooltip = d3.select('body').append('div')
+    .attr('class', 'd3p-tooltip')
+    .style('opacity', 0);
+  d3phylum._visuals.tooltip = tooltip;
+
+  var visualFunc = function(selection) {
+    selection.on('mouseover', function(d) {
+      d3phylum._visuals.tooltip.transition()
+        .duration(200)
+        .style('opacity', 1);
+      d3phylum._visuals.tooltip.html(
+        _config.html_content_func(d)
+      )
+      .style('left', (d3.event.pageX + 14) + 'px')
+      .style('top', (d3.event.pageY - 28) + 'px');
+    })
+    .on('mouseout', function(d) {
+      d3phylum._visuals.tooltip.transition()
+        .duration(200)
+        .style('opacity', 0);
+    });
+  };
+
+  visualFunc.htmlContent = function(html_content_func) {
+    _config.html_content_func = html_content_func;
+    return visualFunc;
+  }
 
   return visualFunc;
 };

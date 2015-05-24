@@ -45,3 +45,40 @@
   font-size: 12px;
   vertical-align: top;
 }
+
+.d3p-v-gridline, .d3p-h-gridline {
+  stroke: #F5F5F5;
+}
+
+.d3p-scale-type-selection-widget {
+  margin-bottom: 10px;
+}
+
+.d3p-distribution-grid-zoom-widget {
+  margin-bottom: 10px;
+}
+
+.d3p-distribution-grid-zoom-option {
+  margin: 0 6px;
+  text-decoration: none;
+}
+
+.d3p-scale-type-selection-widget > label {
+  text-transform: capitalize;
+  margin: 0 6px;
+}
+
+.d3p-group-selection-widget > label {
+  text-transform: capitalize;
+  margin: 0 4px;
+  line-height: 23px;
+}
+
+input[name="d3p-group-select-option"], input[name="d3p-scale-type-option"] {
+  margin-right: 5px;
+}
+
+.d3p-input-radio-wrapper {
+  white-space: nowrap;
+  display: inline-block;
+}
