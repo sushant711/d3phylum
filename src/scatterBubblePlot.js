@@ -40,7 +40,7 @@ d3phylum.visuals.scatterBubblePlot = function() {
       .attr('class', 'd3p-tooltip')
       .style('opacity', 0);
     _visuals.control_widgets = _visuals.parent_selection.append('div')
-      .attr('class', 'control-widgets')
+      .attr('class', 'd3p-control-widgets')
       .style({
         'margin-top': '17px',
         'margin-right': _c.margin.right + 'px',
